@@ -1,21 +1,29 @@
-// ▼クリックして画面表示が変わるようにする
-import { useState } from 'react';
+// ▼App.jsでstateを利用できるようにする
+import React from 'react';
 import { List } from "./List";
 
-function App() {
-  const [description, setDescription] = useState('Before Click!');
-
-  const changeDescription = () => { // 1) 追加
-    setDescription('After Click!!')
+class App extends React.Component {
+  constructor(props) {// 1) 追加
+    super(props);
+    this.state = { description: 'Before Click!' }
   }
 
-  return (
-    <div>
-      { description }
-      <List title="Favorite Languages"/>
-      <button onClick={ changeDescription }>Button</button> {/* 2) 追加 */}
-    </div>
-  );
+  changeDescription() {// 2) 追加
+    this.setState({
+      description: 'After Click!!'
+    })
+  }
+
+  render() {
+    const { description } = this.state; // 3) 追加
+    return(
+      <div>
+        { description } {/* 4) 追加 */}
+        <List title="Favorite Languages"/>
+        <button onClick={ this.changeDescription.bind(this) }>Button</button> {/* 5) 追加 */}
+      </div>
+    )
+  }
 }
 
 export default App;
