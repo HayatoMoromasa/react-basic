@@ -1,19 +1,23 @@
-// ▼クリックして画面表示が変わるようにする
 import { useState } from 'react';
 import { List } from "./List";
+import { Form } from "./Form";
 
 function App() {
-  const [description, setDescription] = useState('Before Click!');
-
-  const changeDescription = () => { // 1) 追加
-    setDescription('After Click!!')
-  }
+  const [tab, setTab] = useState('list')
+  const tabComponent = tab === 'list' ? <List /> : <Form/>
 
   return (
     <div>
-      { description }
-      <List title="Favorite Languages"/>
-      <button onClick={ changeDescription }>Button</button> {/* 2) 追加 */}
+    <header>
+      <ul>
+        <li onClick={() => setTab('list')}>List</li>
+        <li onClick={() => setTab('form')}>Form</li>
+      </ul>
+    </header>
+    <hr />
+      {
+        tab === 'list' ? <List title="Favorite Languages"/> : <Form />
+      }
     </div>
   );
 }
