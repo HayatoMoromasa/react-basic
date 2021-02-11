@@ -1,26 +1,32 @@
-// ▼App.jsでstateを利用できるようにする
+// ▼ClassComponentsへif*loopを反映
 import React from 'react';
 import { List } from "./List";
+import { Form } from "./Form";// 1) 追加
 
 class App extends React.Component {
-  constructor(props) {// 1) 追加
+  constructor(props) {
     super(props);
-    this.state = { description: 'Before Click!' }
+    this.state = { tab: 'list' };// 2) 変更
   }
 
-  changeDescription() {// 2) 追加
-    this.setState({
-      description: 'After Click!!'
-    })
-  }
+  // 3) changeDescription削除
+
 
   render() {
-    const { description } = this.state; // 3) 追加
+    const { tab } = this.state; // 3) 変更
     return(
       <div>
-        { description } {/* 4) 追加 */}
-        <List title="Favorite Languages"/>
-        <button onClick={ this.changeDescription.bind(this) }>Button</button> {/* 5) 追加 */}
+      {/* 4) 追加 */}
+        <header>
+          <ul>
+            <li onClick={() => this.setState({ tab: 'list' })}>list</li>
+            <li onClick={() => this.setState({ tab: 'form' })}>form</li>
+          </ul>
+        </header>
+        <hr />
+        {
+          tab === 'list' ? <List/> : <Form/>
+        }
       </div>
     )
   }

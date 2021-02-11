@@ -1,14 +1,23 @@
-// ▼List.jsのClassComponents化
 import React from 'react';
 
-export class List extends React.Component {
-    render() {
-        const { title } = this.props;
+const Languages = [// 5) 追加
+    'Javascript',
+    'Typescript',
+    'Ruby',
+    'PHP',
+    'Go'
+];
 
+export class List extends React.Component {
+    // 6) 追加
+    render() {
         return (
             <div>
-                <h1>{ title }</h1>
-                <div>This is List</div>
+                {
+                    Languages.map((lang, index) => {
+                        return <div key={ index }>{ lang }</div>
+                    })
+                }
             </div>
         )
     }
