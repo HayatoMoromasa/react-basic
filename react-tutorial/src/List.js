@@ -1,18 +1,8 @@
-const Languages = [
-    'Javascript',
-    'Typescript',
-    'Ruby',
-    'PHP',
-    'Go'
-];
-
-
-export const List = () => {// titleを削除
+export const List = ({ langs }) => { // 1) 変更
     return (
         <div>
-            {/* h1 titleを削除 */}
             {
-                Languages.map((lang, index) => {
+                langs.map((lang, index) => { // 2) 変更
                     return <div key={ index }>{ lang }</div>
                 })
             }
