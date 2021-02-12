@@ -1,16 +1,15 @@
-import { useState } from 'react';// 1) 追加
+import { useState } from 'react';
 
-export const Form = () => {
-    const [ text, setText ] = useState(''); // 2) 追加
+export const Form = ({ onAddLang }) => { // 1) 変更
+    const [ text, setText ] = useState('');
 
-    const submitForm = (e) => { // 3) 追加
+    const submitForm = (e) => {
         e.preventDefault();
-        console.log(`submitForm(${text})`);
+        onAddLang(text);// 2) 変更
     }
 
     return (
         <div>
-            {/* 4) 変更 */}
             <h1>Add new language</h1>
             <form onSubmit={submitForm}>
                 <div>
