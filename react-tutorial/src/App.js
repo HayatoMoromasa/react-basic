@@ -4,7 +4,6 @@ import { Form } from "./Form";
 
 function App() {
   const [tab, setTab] = useState('list')
-  const tabComponent = tab === 'list' ? <List /> : <Form/>
 
   return (
     <div>
