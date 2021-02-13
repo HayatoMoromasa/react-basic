@@ -1,15 +1,38 @@
+import styled from 'styled-components';// 1) 追加
 import { useState, useEffect } from 'react';
 import { List } from "./List";
 import { Form } from "./Form";
 import { getLanguages } from "./const/languages";
 
+
+// 2) 追加
+const Header = styled.header`
+  display: flex;
+  justify-content: space-between;
+  padding: 24px 64px 0;
+  border-bottom: 1px solid #E0E0E0;
+`
+const HeaderUl = styled.ul`
+  display: flex;
+  margin: 0;
+  padding: 0;
+`
+
+const HeaderLi = styled.li`
+  list-style: none;
+  padding: 4px 12px;
+  cursor: pointer;
+  border-bottom: ${props => props.focused ? '2px solid #F44336' : 'none'}; /* propsにfocusがあればstyleがあたる */
+`
+
+
+
+
 function App() {
-  console.log('App.js')// 1) 追加
   const [tab, setTab] = useState('list');
   const [langs, setLangs] = useState([]);
 
   useEffect(() => {
-    console.log('App.js:useEffect');
     fetchLanguages();
   },[]);
 
@@ -19,20 +42,19 @@ function App() {
   }
 
   const addLang = (lang) => {
-    console.log(lang);
     setLangs([...langs, lang])
     setTab('list');
   }
 
   return (
     <div>
-    <header>
-      <ul>
-        <li onClick={() => setTab('list')}>List</li>
-        <li onClick={() => setTab('form')}>Form</li>
-      </ul>
-    </header>
-    <hr />
+    {/* 3) 変更*/}
+    <Header>
+      <HeaderUl>
+        <HeaderLi focused={ tab === 'list' } onClick={() => setTab('list')}>List</HeaderLi>
+        <HeaderLi focused={ tab === 'form' } onClick={() => setTab('form')}>Form</HeaderLi>
+      </HeaderUl>
+    </Header>
       {
         tab === 'list' ? <List langs={langs} /> : <Form onAddLang={addLang}/>
       }
