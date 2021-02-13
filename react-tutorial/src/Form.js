@@ -1,11 +1,12 @@
 import { useState } from 'react';
 
-export const Form = ({ onAddLang }) => { // 1) 変更
+export const Form = ({ onAddLang }) => {
+    console.warn('Form.js');// 1) 追加
     const [ text, setText ] = useState('');
 
     const submitForm = (e) => {
         e.preventDefault();
-        onAddLang(text);// 2) 変更
+        onAddLang(text);
     }
 
     return (

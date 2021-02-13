@@ -1,8 +1,8 @@
-export const List = ({ langs }) => { // 1) 変更
+export const List = ({ langs }) => {
     return (
         <div>
             {
-                langs.map((lang, index) => { // 2) 変更
+                langs.map((lang, index) => {
                     return <div key={ index }>{ lang }</div>
                 })
             }
