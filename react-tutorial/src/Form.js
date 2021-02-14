@@ -1,11 +1,12 @@
 import { useState } from 'react';
-import { Button } from './components/button'; // 1) 追加
-import styled from 'styled-components';// 2) 追加
+import { Button } from './components/button';
+import styled from 'styled-components';
+import { TabBodyContainer } from './components/tab-body-container';// 4) 追加
 
-/*　3) 追加*/
-const Container = styled.div`
-    padding: 12px 64px;
-`
+// const Container = styled.div` 3) 削除
+//     padding: 12px 64px;
+// `
+
 const Label = styled.label`
     display: flex;
     color: #757575;
@@ -20,7 +21,7 @@ const Input = styled.input`
 const ButtonContainer = styled.div`
     margin-top: 24px;
 `
-const FormButton = styled(Button)`/* Buttonのスタイルを継承できる*/
+const FormButton = styled(Button)`
     width: 120px;
 `
 
@@ -34,9 +35,9 @@ export const Form = ({ onAddLang }) => {
     }
 
     return (
-        /* 4) それぞれタグ名変更*/
-        <Container>
-            <h1>Add new language</h1>
+
+        <TabBodyContainer title="Add new language" >{/*　1) 追加　*/}
+            {/* <h1>Add new language</h1>　2) 削除 */}
             <form onSubmit={submitForm}>
                 <div>
                     <Label>Language</Label>
@@ -46,6 +47,6 @@ export const Form = ({ onAddLang }) => {
                     <FormButton>Add</FormButton>
                 </ButtonContainer>
             </form>
-        </Container>
+        </TabBodyContainer>
     )
 }

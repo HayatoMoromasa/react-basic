@@ -1,11 +1,11 @@
-import styled from 'styled-components';// 1) 追加
+import styled from 'styled-components';
 import { useState, useEffect } from 'react';
 import { List } from "./List";
 import { Form } from "./Form";
 import { getLanguages } from "./const/languages";
+import { widthLoading } from './hoc/widthLoading';//5) 追加
 
 
-// 2) 追加
 const Header = styled.header`
   display: flex;
   justify-content: space-between;
@@ -22,24 +22,24 @@ const HeaderLi = styled.li`
   list-style: none;
   padding: 4px 12px;
   cursor: pointer;
-  border-bottom: ${props => props.focused ? '2px solid #F44336' : 'none'}; /* propsにfocusがあればstyleがあたる */
+  border-bottom: ${props => props.focused ? '2px solid #F44336' : 'none'};
 `
 
 
 
 
-function App() {
+function App({ data }) { // 1) 変更
   const [tab, setTab] = useState('list');
-  const [langs, setLangs] = useState([]);
+  const [langs, setLangs] = useState(data);// 3) 変更
 
-  useEffect(() => {
-    fetchLanguages();
-  },[]);
+  // useEffect(() => {　//2) 削除
+  //   fetchLanguages();
+  // },[]);
 
-  const fetchLanguages = async () => {
-    const languages = await getLanguages();
-    setLangs(languages);
-  }
+  // const fetchLanguages = async () => {
+  //   const languages = await getLanguages();
+  //   setLangs(languages);
+  // }
 
   const addLang = (lang) => {
     setLangs([...langs, lang])
@@ -48,7 +48,6 @@ function App() {
 
   return (
     <div>
-    {/* 3) 変更*/}
     <Header>
       <HeaderUl>
         <HeaderLi focused={ tab === 'list' } onClick={() => setTab('list')}>List</HeaderLi>
@@ -62,4 +61,4 @@ function App() {
   );
 }
 
-export default App;
+export default widthLoading(App, getLanguages);// 4) 変更
