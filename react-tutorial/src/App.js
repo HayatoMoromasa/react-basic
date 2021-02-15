@@ -3,8 +3,7 @@ import { useState, useEffect } from 'react';
 import { List } from "./List";
 import { Form } from "./Form";
 import { getLanguages } from "./const/languages";
-import { widthLoading } from './hoc/widthLoading';//5) 追加
-
+import { widthLoading } from './hoc/widthLoading';
 
 const Header = styled.header`
   display: flex;
@@ -28,18 +27,9 @@ const HeaderLi = styled.li`
 
 
 
-function App({ data }) { // 1) 変更
+function App({ data }) {
   const [tab, setTab] = useState('list');
-  const [langs, setLangs] = useState(data);// 3) 変更
-
-  // useEffect(() => {　//2) 削除
-  //   fetchLanguages();
-  // },[]);
-
-  // const fetchLanguages = async () => {
-  //   const languages = await getLanguages();
-  //   setLangs(languages);
-  // }
+  const [langs, setLangs] = useState(data);
 
   const addLang = (lang) => {
     setLangs([...langs, lang])
@@ -61,4 +51,4 @@ function App({ data }) { // 1) 変更
   );
 }
 
-export default widthLoading(App, getLanguages);// 4) 変更
+export default widthLoading(App, getLanguages);
