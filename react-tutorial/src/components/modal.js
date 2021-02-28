@@ -16,10 +16,10 @@ const Container = styled.div`
     background-color: rgba(0,0,0, .5);
 `
 
-export  const Modal = (props) => { {/*3) 追加*/}
+export const Modal = (props) => {
     return ReactDOM.createPortal(
-        <Container>　{/*　4) 追加*/}
-            { props.children }　{/* 5) 追加*/}
+        <Container>
+            { props.children }
         </Container>,
         modalRoot,
     )

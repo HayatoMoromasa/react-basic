@@ -3,7 +3,7 @@ import { Button } from './components/button';
 import styled from 'styled-components';
 import { TabBodyContainer } from './components/tab-body-container';
 import { FormModal } from './FormModal';
-
+import { Hint } from './hint';
 
 const Label = styled.label`
     display: flex;
@@ -26,11 +26,11 @@ const FormButton = styled(Button)`
 
 export const Form = ({ onAddLang }) => {
     const [ text, setText ] = useState('');
-    const [ showModal, setShowModal] = useState(false); // 1)追加
+    const [ showModal, setShowModal] = useState(false);
 
     const submitForm = (e) => {
         e.preventDefault();
-        setShowModal(true);// 2)追加
+        setShowModal(true);
     }
 
     return (
@@ -41,12 +41,13 @@ export const Form = ({ onAddLang }) => {
                 <div>
                     <Label>Language</Label>
                     <Input type="text" value={text} onChange={(e) => setText(e.target.value)} />
+                    <Hint/>{/*追加*/}
                 </div>
                 <ButtonContainer>
                     <FormButton>Add</FormButton>
                 </ButtonContainer>
             </form>
-            {// 3) 追加
+            {
                 showModal &&
                 <FormModal
                     confirm={() => onAddLang(text)}
